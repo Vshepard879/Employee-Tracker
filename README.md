@@ -35,6 +35,10 @@ SO THAT I can organize and plan my business
 
 
 ## <u>Dependencies</u>
+- express
+- inquirer
+- mysql2
+- dotenv
 
 ### Node.js <br>
 
