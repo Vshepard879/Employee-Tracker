@@ -3,7 +3,7 @@ const db = require('./db/connection');
 const mysql = require('mysql2');
 const express = require('express');
 const { connection } = require('./db');
-const router = express.Router();
+
 
 
 db.connect(async function () {
@@ -17,55 +17,75 @@ function start() {
             name: 'choice',
             message: 'Select an option.',
             choices: [
-                'View Employees',
-                'View Roles',
-                'View Departments',
-                'Add New Employee',
-                'Add New Role',
-                'Add Department',
-                'Quit'
+                "View Departments",
+                "View Employees",
+                "View Roles",
+                "View Managers",
+                "View Employees by Department",
+                "Add a Department",
+                "Add a Role",
+                "Add an Employee",
+                "Update Employee Role",
+                "Update Manager",
+                "Delete Employee",
+                "Delete Role",
+                "Delete Department",
+                "View Department Budget",
+                "Exit"
             ],
         }
     ]
     )
-        .then((answer) => {
-            switch (answer.choice) {
-                
-                case 'View Employees':
-                    
-                    viewEmployees();
-                    break;
-                case 'View Roles':
-
-                    viewRoles();
-                    break;
-                case 'View Departments':
-
-                    viewDepartments();
-                    break;
-                case 'Add New Employee':
-
-                    newEmployee();
-                    break;
-                case 'Add New Role':
-
-                    newRole();
-                    break;
-
-                case 'Add Department':
-
-                    newDepartment();
-                    break;
-
-                case 'Quit':
-
-                    Quit();
-                    break;
-            }
-
-        }
-
-        )
+       
+    .then(response => {
+        switch (response.choice) {
+            case "View Departments":
+                viewDepartments()
+                break;
+            case "View Employees":
+                viewEmployees();
+                break;
+            case "View Roles":
+                viewRoles();
+                break;
+            case "View Managers":
+                viewManagers();
+                break;
+            case "View Employees by Department":
+                viewDeptEmployees();
+                break;
+            case "Add a Department":
+                addDept();
+                break;
+            case "Add a Role":
+                addRole();
+                break;
+            case "Add an Employee":
+                addEmployee();
+                break;
+            case "Update Employee Role":
+                updateRole();
+                break;
+            case "Update Manager":
+                updateManager();
+                break;
+            case "Delete Employee":
+                deleteEmployee();
+                break;
+            case "Delete Role":
+                deleteRole();
+                break;
+            case "Delete Department":
+                deleteDepartment();
+                break;
+            case "View Department Budget":
+                viewBudget()
+                break;
+            case "Exit":
+                process.exit();
+                // break;
+        } 
+    });
 }
 
 function viewEmployees() {
